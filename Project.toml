@@ -3,7 +3,15 @@ uuid = "c8fb33dd-bab5-42de-b509-204e66d7aaf0"
 authors = ["Takafumi Arakaki <aka.tkf@gmail.com>"]
 version = "0.1.0"
 
+[deps]
+ConstructionBase = "187b0558-2788-49d3-abe0-74a17ed4e7c9"
+Requires = "ae029012-a4dd-5104-9daa-d747884805df"
+SplittablesBase = "171d559e-b47b-412a-8079-5efa626c420e"
+
 [compat]
+ConstructionBase = "0.1, 1"
+Requires = "1"
+SplittablesBase = "0.1.2"
 julia = "1"
 
 [extras]
