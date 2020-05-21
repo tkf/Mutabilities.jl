@@ -1,6 +1,6 @@
 module TestCore
 
-using ImmutableContainers
+using Mutabilities
 using Test
 
 @testset "readonly" begin

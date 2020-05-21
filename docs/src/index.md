@@ -1,12 +1,12 @@
-# ImmutableContainers.jl
+# Mutabilities.jl
 
 ```@index
 ```
 
 ```@docs
-ImmutableContainers
-ImmutableContainers.readonly
-ImmutableContainers.freeze
-ImmutableContainers.move!
-ImmutableContainers.meltproperties
+Mutabilities
+Mutabilities.readonly
+Mutabilities.freeze
+Mutabilities.move!
+Mutabilities.meltproperties
 ```

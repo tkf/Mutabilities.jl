@@ -8,7 +8,7 @@ mutable handle `z` to it.  This can be unwrapped using
 
 # Examples
 ```jldoctest
-julia> using ImmutableContainers
+julia> using Mutabilities
 
 julia> x = meltproperties(1 + 2im)
 mutable handle to 1 + 2im

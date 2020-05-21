@@ -1,6 +1,6 @@
 module TestDoctest
 
-import ImmutableContainers
+import Mutabilities
 using Documenter: doctest
 using Test
 
@@ -9,7 +9,7 @@ using Test
         @info "Skipping doctests on PkgEval."
         return
     end
-    doctest(ImmutableContainers)
+    doctest(Mutabilities)
 end
 
 end  # module

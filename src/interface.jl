@@ -48,7 +48,7 @@ creating a copy and without asserting strict absence of ownership.
 
 # Examples
 ```jldoctest
-julia> using ImmutableContainers
+julia> using Mutabilities
 
 julia> z = freeze([1, 2, 3])
 3-element freeze(::Array{Int64,1}) with eltype Int64:
@@ -57,7 +57,7 @@ julia> z = freeze([1, 2, 3])
  3
 
 julia> z[1] = 111
-ERROR: setindex! not defined for ImmutableContainers.ImmutableArray{Int64,1,Array{Int64,1}}
+ERROR: setindex! not defined for Mutabilities.ImmutableArray{Int64,1,Array{Int64,1}}
 
 julia> y = melt(z)
 3-element Array{Int64,1}:
@@ -125,7 +125,7 @@ object `x` is not going to be used by the caller.
 
 # Examples
 ```jldoctest
-julia> using ImmutableContainers
+julia> using Mutabilities
 
 julia> x = [];
 

@@ -1,7 +1,7 @@
 module TestStaticArrays
 
-using ImmutableContainers
-using ImmutableContainers: isfrozen, isfrozenindex, isfrozenvalue
+using Mutabilities
+using Mutabilities: isfrozen, isfrozenindex, isfrozenvalue
 using StaticArrays
 using Test
 

@@ -1,10 +1,10 @@
-module ImmutableContainers
+module Mutabilities
 
 # Use README as the docstring of the module:
 @doc let path = joinpath(dirname(@__DIR__), "README.md")
     include_dependency(path)
     replace(read(path, String), r"^```julia"m => "```jldoctest README")
-end ImmutableContainers
+end Mutabilities
 
 export freeze,
     freezeindex,

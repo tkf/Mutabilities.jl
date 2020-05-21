@@ -1,6 +1,6 @@
 module TestDataTypes
 
-using ImmutableContainers
+using Mutabilities
 using Test
 
 @testset begin

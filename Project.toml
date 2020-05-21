@@ -1,5 +1,5 @@
-name = "ImmutableContainers"
-uuid = "c8fb33dd-bab5-42de-b509-204e66d7aaf0"
+name = "Mutabilities"
+uuid = "975bc06d-81ee-48ed-8285-ff0b70b3c51c"
 authors = ["Takafumi Arakaki <aka.tkf@gmail.com>"]
 version = "0.1.0"
 

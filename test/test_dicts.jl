@@ -1,6 +1,6 @@
 module TestDicts
 
-using ImmutableContainers
+using Mutabilities
 using Test
 
 @testset "readonly" begin

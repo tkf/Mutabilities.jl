@@ -1,6 +1,6 @@
-# ImmutableContainers: a type-level tool for ownership-by-convention
+# Mutabilities: a type-level tool for ownership-by-convention
 
-ImmutableContainers.jl is a type-level tool for describing
+Mutabilities.jl is a type-level tool for describing
 mutabilities and ownership of objects in a composable manner.
 
 ## Summary
@@ -19,7 +19,7 @@ The most easy-to-use interface is `readonly(x)` which creates a
 read-only "view" to `x`:
 
 ```julia
-julia> using ImmutableContainers
+julia> using Mutabilities
 
 julia> x = [1, 2, 3];
 
@@ -30,7 +30,7 @@ julia> z = readonly(x)
  3
 
 julia> z[1] = 111
-ERROR: setindex! not defined for ImmutableContainers.ReadOnlyArray{Int64,1,Array{Int64,1}}
+ERROR: setindex! not defined for Mutabilities.ReadOnlyArray{Int64,1,Array{Int64,1}}
 ```
 
 Note that changes in `x` would still be reflected to `z`:
@@ -128,7 +128,7 @@ julia> push!(append_only, 4)
  4
 
 julia> append_only[1] = 1
-ERROR: setindex! not defined for ImmutableContainers.AppendOnlyVector{Int64,Array{Int64,1}}
+ERROR: setindex! not defined for Mutabilities.AppendOnlyVector{Int64,Array{Int64,1}}
 ```
 
 It is possible to create a shape-frozen vector by freezing the indices:
@@ -156,7 +156,7 @@ Using `freeze` and `melt` at API boundaries is a good way to ensure
 correctness of the programs.  However,
 [until the `julia` compiler gets a borrow checker](https://github.com/JuliaLang/julia/pull/31630)
 and automatically elides such copies, it may be very expensive to use
-them in some situations.  Until then, ImmutableContainers.jl provides
+them in some situations.  Until then, Mutabilities.jl provides
 an "escape hatch"; i.e., an API to let the programmer declare that
 there is no sharing of the given object:
 
@@ -246,7 +246,7 @@ julia> freeze(MVector(1, 2, 3))  # or freezevalue
 
 ### StructArrays
 
-ImmutableContainers.jl is aware of mutability of each field arrays
+Mutabilities.jl is aware of mutability of each field arrays
 wrapped in struct arrays:
 
 ```julia

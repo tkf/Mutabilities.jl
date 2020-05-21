@@ -1,10 +1,10 @@
 using Documenter
-using ImmutableContainers
+using Mutabilities
 
 makedocs(
-    sitename = "ImmutableContainers",
+    sitename = "Mutabilities",
     format = Documenter.HTML(),
-    modules = [ImmutableContainers],
+    modules = [Mutabilities],
 )
 
-deploydocs(repo = "github.com/tkf/ImmutableContainers.jl")
+deploydocs(repo = "github.com/tkf/Mutabilities.jl")
