@@ -83,11 +83,17 @@ julia&gt; melt(move!(z))  # no copy
            return freeze(move!(out))
        end;
 
-julia&gt; add(move!(ones(3)), ones(3))  # allocates two arrays, not three
+julia&gt; x = ones(3)
+       y = ones(3);
+
+julia&gt; z = add(move!(x), y)  # no allocations
 3-element freeze(::Array{Float64,1}) with eltype Float64:
  2.0
  2.0
- 2.0</code></pre><p><strong>Supported collections and types</strong></p><ul><li><code>AbstractArray</code></li><li><code>AbstractDict</code></li><li><code>AbstractSet</code></li><li><a href="https://juliadata.github.io/StructTypes.jl/stable/#DataTypes-1">Data types</a> (&quot;plain <code>struct</code>&quot;)</li></ul><p><strong>Interop</strong></p><p><strong>StaticArrays</strong></p><p>Static arrays are converted to appropriate types instead of the wrapper arrays:</p><pre><code class="language-julia-repl">julia&gt; using StaticArrays
+ 2.0
+
+julia&gt; melt(move!(z)) === x  # `x` is mutated
+true</code></pre><p>(<em>Note</em>: Above example intentionally violates the rule for using <code>move!</code> to show how it works.  After <code>add(move!(x), y)</code>, it is not allowed to use <code>x</code>, as done in the last statement.)</p><p><strong>Supported collections and types</strong></p><ul><li><code>AbstractArray</code></li><li><code>AbstractDict</code></li><li><code>AbstractSet</code></li><li><a href="https://juliadata.github.io/StructTypes.jl/stable/#DataTypes-1">Data types</a> (&quot;plain <code>struct</code>&quot;)</li></ul><p><strong>Interop</strong></p><p><strong>StaticArrays</strong></p><p>Static arrays are converted to appropriate types instead of the wrapper arrays:</p><pre><code class="language-julia-repl">julia&gt; using StaticArrays
 
 julia&gt; a = SA[1, 2, 3]
 3-element SArray{Tuple{3},Int64,1,3} with indices SOneTo(3):
@@ -137,7 +143,7 @@ julia&gt; z.a
 3-element freeze(::Array{Int64,1}) with eltype Int64:
  1
  2
- 3</code></pre><p><strong>Related packages</strong></p><ul><li>https://github.com/andyferris/Freeze.jl</li><li>https://github.com/bkamins/ReadOnlyArrays.jl</li></ul></div><a class="docs-sourcelink" target="_blank" href="https://github.com/tkf/Mutabilities.jl/blob/8ab3e5a9ee62be1b7f0177fe29647709adbe9a6c/src/Mutabilities.jl#L4-L296">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="Mutabilities.readonly" href="#Mutabilities.readonly"><code>Mutabilities.readonly</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia">readonly(x) -&gt; z</code></pre><p>Create a read-only view of <code>x</code>.  Mutations on <code>x</code> are reflected to <code>z</code>.</p></div><a class="docs-sourcelink" target="_blank" href="https://github.com/tkf/Mutabilities.jl/blob/8ab3e5a9ee62be1b7f0177fe29647709adbe9a6c/src/interface.jl#L15-L19">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="Mutabilities.freeze" href="#Mutabilities.freeze"><code>Mutabilities.freeze</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia">melt(z) -&gt; x
+ 3</code></pre><p><strong>Related packages</strong></p><ul><li>https://github.com/andyferris/Freeze.jl</li><li>https://github.com/bkamins/ReadOnlyArrays.jl</li></ul></div><a class="docs-sourcelink" target="_blank" href="https://github.com/tkf/Mutabilities.jl/blob/2233946eacb33885ec7809b4bb22dea439f1ed91/src/Mutabilities.jl#L4-L306">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="Mutabilities.readonly" href="#Mutabilities.readonly"><code>Mutabilities.readonly</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia">readonly(x) -&gt; z</code></pre><p>Create a read-only view of <code>x</code>.  Mutations on <code>x</code> are reflected to <code>z</code>.</p></div><a class="docs-sourcelink" target="_blank" href="https://github.com/tkf/Mutabilities.jl/blob/2233946eacb33885ec7809b4bb22dea439f1ed91/src/interface.jl#L15-L19">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="Mutabilities.freeze" href="#Mutabilities.freeze"><code>Mutabilities.freeze</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia">melt(z) -&gt; x
 meltvalue(z) -&gt; x
 meltindex(z) -&gt; x
 freeze(x) -&gt; z
@@ -157,7 +163,7 @@ julia&gt; y = melt(z)
 3-element Array{Int64,1}:
  1
  2
- 3</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/tkf/Mutabilities.jl/blob/8ab3e5a9ee62be1b7f0177fe29647709adbe9a6c/src/interface.jl#L22-L66">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="Mutabilities.move!" href="#Mutabilities.move!"><code>Mutabilities.move!</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia">move!(x)</code></pre><p>Manually declare that the object <code>x</code> has no other owners and the object <code>x</code> is not going to be used by the caller.</p><p><strong>Examples</strong></p><pre><code class="language-julia-repl">julia&gt; using Mutabilities
+ 3</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/tkf/Mutabilities.jl/blob/2233946eacb33885ec7809b4bb22dea439f1ed91/src/interface.jl#L22-L66">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="Mutabilities.move!" href="#Mutabilities.move!"><code>Mutabilities.move!</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia">move!(x)</code></pre><p>Manually declare that the object <code>x</code> has no other owners and the object <code>x</code> is not going to be used by the caller.</p><p><strong>Examples</strong></p><pre><code class="language-julia-repl">julia&gt; using Mutabilities
 
 julia&gt; x = [];
 
@@ -168,7 +174,7 @@ julia&gt; melt(move!(freeze(x))) === x
 false
 
 julia&gt; melt(freeze(move!(x))) === x
-false</code></pre><div class="admonition is-info"><header class="admonition-header">Note</header><div class="admonition-body"><p>Above examples intentionally violate the rule for using <code>move!</code> to show how it works.  When <code>x</code> is passed to <code>move!</code> on the left hand side, it is not allowed to use <code>x</code> on the right hand side of <code>===</code>.</p></div></div></div><a class="docs-sourcelink" target="_blank" href="https://github.com/tkf/Mutabilities.jl/blob/8ab3e5a9ee62be1b7f0177fe29647709adbe9a6c/src/interface.jl#L118-L145">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="Mutabilities.meltproperties" href="#Mutabilities.meltproperties"><code>Mutabilities.meltproperties</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia">meltproperties(z) -&gt; x
+false</code></pre><div class="admonition is-info"><header class="admonition-header">Note</header><div class="admonition-body"><p>Above examples intentionally violate the rule for using <code>move!</code> to show how it works.  When <code>x</code> is passed to <code>move!</code> on the left hand side, it is not allowed to use <code>x</code> on the right hand side of <code>===</code>.</p></div></div></div><a class="docs-sourcelink" target="_blank" href="https://github.com/tkf/Mutabilities.jl/blob/2233946eacb33885ec7809b4bb22dea439f1ed91/src/interface.jl#L118-L145">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="Mutabilities.meltproperties" href="#Mutabilities.meltproperties"><code>Mutabilities.meltproperties</code></a> — <span class="docstring-category">Function</span></header><section><div><pre><code class="language-julia">meltproperties(z) -&gt; x
 freezeproperties(x) -&gt; z</code></pre><p><code>meltproperties</code> on an immutable data type (<code>struct</code>) object creates a mutable handle <code>z</code> to it.  This can be unwrapped using <code>freezeproperties</code> to obtain the &quot;mutated&quot; immutable object.</p><p><strong>Examples</strong></p><pre><code class="language-julia-repl">julia&gt; using Mutabilities
 
 julia&gt; x = meltproperties(1 + 2im)
@@ -188,4 +194,4 @@ mutable handle to (a = 1, b = 2)
 julia&gt; x.a = 123;
 
 julia&gt; freezeproperties(x)
-(a = 123, b = 2)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/tkf/Mutabilities.jl/blob/8ab3e5a9ee62be1b7f0177fe29647709adbe9a6c/src/datatypes.jl#L1-L32">source</a></section></article></article></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> on <span class="colophon-date" title="Thursday 21 May 2020 03:04">Thursday 21 May 2020</span>. Using Julia version 1.4.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+(a = 123, b = 2)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/tkf/Mutabilities.jl/blob/2233946eacb33885ec7809b4bb22dea439f1ed91/src/datatypes.jl#L1-L32">source</a></section></article></article></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> on <span class="colophon-date" title="Thursday 21 May 2020 19:48">Thursday 21 May 2020</span>. Using Julia version 1.4.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
