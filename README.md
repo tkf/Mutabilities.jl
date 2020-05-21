@@ -197,7 +197,7 @@ output values:
 julia> function add(x, y)
            out = melt(x)
            out .+= y
-           return freeze(out)
+           return freeze(move!(out))
        end;
 
 julia> add(move!(ones(3)), ones(3))  # allocates two arrays, not three
