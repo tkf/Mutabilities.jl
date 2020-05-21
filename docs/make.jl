@@ -7,4 +7,4 @@ makedocs(
     modules = [Mutabilities],
 )
 
-deploydocs(repo = "github.com/tkf/Mutabilities.jl")
+deploydocs(repo = "github.com/tkf/Mutabilities.jl", push_preview = true)
