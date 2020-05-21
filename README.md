@@ -1,9 +1,13 @@
 # Mutabilities: a type-level tool for ownership-by-convention
 
+[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://tkf.github.io/Mutabilities.jl/dev)
 [![GitHub Actions](https://github.com/tkf/Mutabilities.jl/workflows/Run%20tests/badge.svg)](https://github.com/tkf/Mutabilities.jl/actions?query=workflow%3A%22Run+tests%22)
 
 Mutabilities.jl is a type-level tool for describing
 mutabilities and ownership of objects in a composable manner.
+
+See more in the
+[documentation](https://tkf.github.io/Mutabilities.jl/dev).
 
 ## Summary
 
