@@ -200,12 +200,22 @@ julia> function add(x, y)
            return freeze(move!(out))
        end;
 
-julia> add(move!(ones(3)), ones(3))  # allocates two arrays, not three
+julia> x = ones(3)
+       y = ones(3);
+
+julia> z = add(move!(x), y)  # no allocations
 3-element freeze(::Array{Float64,1}) with eltype Float64:
  2.0
  2.0
  2.0
+
+julia> melt(move!(z)) === x  # `x` is mutated
+true
 ```
+
+(*Note*: Above example intentionally violates the rule for using
+`move!` to show how it works.  After `add(move!(x), y)`, it is not
+allowed to use `x`, as done in the last statement.)
 
 ## Supported collections and types
 
