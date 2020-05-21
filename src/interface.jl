@@ -8,11 +8,9 @@ isfrozen(::Type{T}) where {T} = isfrozenvalue(T) && isfrozenindex(T)
 
 isimmutablevalue(x) = isimmutablevalue(typeof(x))
 isimmutableindex(x) = isimmutableindex(typeof(x))
-ismutable(x) = ismutable(typeof(x))
 
 isimmutablevalue(::Type{T}) where {T} = isfrozenvalue(T)
 isimmutableindex(::Type{T}) where {T} = isfrozenindex(T)
-ismutable(::Type{T}) where T = !(isimmutablevalue(T) || isimmutableindex(T))
 
 """
     readonly(x) -> z
