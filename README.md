@@ -284,3 +284,8 @@ julia> z.a
  2
  3
 ```
+
+## Related packages
+
+* https://github.com/andyferris/Freeze.jl
+* https://github.com/bkamins/ReadOnlyArrays.jl
