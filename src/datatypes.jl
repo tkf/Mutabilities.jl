@@ -3,8 +3,8 @@
     freezeproperties(x) -> z
 
 `meltproperties` on an immutable data type (`struct`) object creates a
-mutable handle `z` to it.  This can be unwrapped using
-`freezeproperties` to obtain the "mutated" immutable object.
+mutable handle to it.  This can be unwrapped using `freezeproperties`
+to obtain the "mutated" immutable object.
 
 # Examples
 ```jldoctest
